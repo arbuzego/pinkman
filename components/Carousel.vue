@@ -1,0 +1,144 @@
+<template>
+  <div
+    id="carouselExampleCaptions"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <!-- <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+    </div> -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="../static/images/Illustrations Large Card One.png"
+          class="d-block w-100"
+          alt="..."
+        />
+        <div class="carousel_body">
+          <h5 class="carousel_title">Метка первого слайда</h5>
+          <p class="carousel_text">
+            Жидкость <span style="color:#00DB00">заряжает</span
+            ><br />электронный
+            <span style="color:#eff6ff">гамма-квант</span>,<br />при этом
+            <span style="color:#eff6ff">дефект массы</span><br />не образуется
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+          src="../static/images/Illustrations Large Card Two.png"
+          class="d-block w-100"
+          alt="..."
+        />
+        <div class="carousel_body">
+          <h5 class="carousel_title">Метка второго слайда</h5>
+          <p class="carousel_text">
+            Жидкость <span style="color:#eff6ff">заряжает</span
+            ><br />электронный
+            <span style="color:#00DB00">гамма-квант</span>,<br />при этом
+            <span style="color:#eff6ff">дефект массы</span><br />не образуется
+          </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+          src="../static/images/Illustrations Large Card Three.png"
+          class="d-block w-100"
+          alt="..."
+        />
+        <div class="carousel_body">
+          <h5 class="carousel_title">Метка третьего слайда</h5>
+          <p class="carousel_text">
+            Жидкость <span style="color:#eff6ff">заряжает</span
+            ><br />электронный
+            <span style="color:#eff6ff">гамма-квант</span>,<br />при этом
+            <span style="color:#00DB00">дефект массы</span><br />не образуется
+          </p>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel_button"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="prev"
+    ></button>
+    <button
+      class="carousel_button carousel_button_right"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="next"
+    ></button>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style>
+.carousel {
+  border-radius: 40px;
+  background-color: #1a1f21;
+  margin-bottom: 200px;
+}
+.carousel_button {
+  position: absolute;
+  background-color: #1a1f21;
+  background-image: url("../static/images/Round L arroy.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 50px;
+  width: 50px;
+  border: 1px solid white;
+  border-radius: 50%;
+  transform: rotate(180deg);
+  left: 50px;
+  bottom: 50px;
+  transition: border-color 0.5s ease-in-out;
+}
+.carousel_button_right {
+  left: 112px;
+  transform: none;
+}
+.carousel_button:hover {
+  border-color: #00db00;
+}
+.carousel_body {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+}
+.carousel_title {
+  font-size: 17px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: #00db00;
+  margin-bottom: 40px;
+}
+.carousel_text {
+  font-size: 46px;
+  line-height: 105%;
+  letter-spacing: -0.04em;
+  color: #7a838d;
+}
+</style>
