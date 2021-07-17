@@ -152,7 +152,6 @@ export default {};
 .accordion {
   background: #202426;
   border-radius: 28px;
-  padding: 36px;
   transition: background 0.5s ease-in-out;
   margin-bottom: 8px;
 }
@@ -163,6 +162,7 @@ export default {};
   line-height: 125%;
   letter-spacing: -0.04em;
   color: #eff6ff;
+  padding: 36px;
 }
 .accordion_title::after {
   content: "";
@@ -178,8 +178,8 @@ export default {};
   height: 38px;
   width: 38px;
   border-radius: 50%;
-  top: 0;
-  right: 0;
+  top: 32px;
+  right: 32px;
   transition: border-color 0.5s ease-in-out;
   transition: transform 0.5s ease-in-out;
 }
@@ -203,11 +203,15 @@ export default {};
 .accordion_input:checked ~ .accordion_title:after {
   transform: rotate(-90deg);
 }
+.accordion_input:checked ~ .accordion_title {
+  padding-bottom: 0;
+}
 .accordion_input:checked ~ .accordion_text {
   display: block;
 }
 
 .accordion_text {
+  padding: 0 36px 36px 36px;
   display: none;
   max-width: 750px;
   font-size: 24px;
