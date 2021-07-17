@@ -70,10 +70,6 @@ select {
   outline: none;
 }
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
   margin-bottom: 60px;
 }
 .form_title {
@@ -103,11 +99,12 @@ select {
   flex: 50%;
 }
 .form_inputs {
-  padding: 10px;
   flex: 50%;
-  justify-content: flex-end;
-  align-items: flex-end;
-  align-content: flex-end;
+  padding-left: 48px;
+}
+.form_inputs_row {
+  display: flex;
+  flex-direction: column;
 }
 .form_inputs_fullName::placeholder,
 .form_inputs_email::placeholder {
@@ -116,6 +113,7 @@ select {
 .form_inputs_fullName,
 .form_inputs_email,
 .form_inputs_country {
+  max-width: 562px;
   border: 1px solid #1a1f21;
   padding: 20px 10px 20px 24px;
   background: rgba(255, 255, 255, 0.05);
@@ -124,7 +122,6 @@ select {
   line-height: 150%;
   letter-spacing: -0.02em;
   margin-bottom: 16px;
-  width: 562px;
   color: #eff6ff;
   transition: border-color 0.5s ease-in-out;
 }
@@ -141,7 +138,7 @@ select {
 }
 
 .form_inputs_button {
-  width: 562px;
+  max-width: 562px;
   justify-content: center;
   align-items: center;
   padding: 32px 10px;
