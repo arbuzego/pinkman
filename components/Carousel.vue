@@ -4,7 +4,7 @@
     class="carousel slide"
     data-bs-ride="carousel"
   >
-    <!-- <div class="carousel-indicators">
+    <div class="carousel-indicators">
       <button
         type="button"
         data-bs-target="#carouselExampleCaptions"
@@ -25,53 +25,71 @@
         data-bs-slide-to="2"
         aria-label="Slide 3"
       ></button>
-    </div> -->
+    </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img
+          v-if="windowWidth > 767"
           src="../static/images/Illustrations Large Card One.png"
+          class="d-block w-100"
+          alt="..."
+        />
+        <img
+          v-else
+          src="../static/images/Illustrations Small Card One.png"
           class="d-block w-100"
           alt="..."
         />
         <div class="carousel_body">
           <h5 class="carousel_title">Метка первого слайда</h5>
           <p class="carousel_text">
-            Жидкость <span style="color:#00DB00">заряжает</span
-            ><br />электронный
-            <span style="color:#eff6ff">гамма-квант</span>,<br />при этом
-            <span style="color:#eff6ff">дефект массы</span><br />не образуется
+            Жидкость <span style="color:#00DB00">заряжает</span> электронный
+            <span style="color:#eff6ff">гамма-квант</span>, при этом
+            <span style="color:#eff6ff">дефект массы</span> не образуется
           </p>
         </div>
       </div>
       <div class="carousel-item">
         <img
+          v-if="windowWidth > 767"
           src="../static/images/Illustrations Large Card Two.png"
+          class="d-block w-100"
+          alt="..."
+        />
+        <img
+          v-else
+          src="../static/images/Illustrations Small Card Two.png"
           class="d-block w-100"
           alt="..."
         />
         <div class="carousel_body">
           <h5 class="carousel_title">Метка второго слайда</h5>
           <p class="carousel_text">
-            Жидкость <span style="color:#eff6ff">заряжает</span
-            ><br />электронный
-            <span style="color:#00DB00">гамма-квант</span>,<br />при этом
-            <span style="color:#eff6ff">дефект массы</span><br />не образуется
+            Жидкость <span style="color:#eff6ff">заряжает</span> электронный
+            <span style="color:#00DB00">гамма-квант</span>, при этом
+            <span style="color:#eff6ff">дефект массы</span> не образуется
           </p>
         </div>
       </div>
       <div class="carousel-item">
         <img
+          v-if="windowWidth > 767"
           src="../static/images/Illustrations Large Card Three.png"
+          class="d-block w-100"
+          alt="..."
+        />
+        <img
+          v-else
+          src="../static/images/Illustrations Small Card Three.png"
           class="d-block w-100"
           alt="..."
         />
         <div class="carousel_body">
           <h5 class="carousel_title">Метка третьего слайда</h5>
           <p class="carousel_text">
-            Жидкость <span style="color:#eff6ff">заряжает</span
-            ><br />электронный
-            <span style="color:#eff6ff">гамма-квант</span>,<br />при этом
-            <span style="color:#00DB00">дефект массы</span><br />не образуется
+            Жидкость <span style="color: #eff6ff">заряжает</span> электронный
+            <span style="color:#eff6ff">гамма-квант</span>, при этом
+            <span style="color:#00DB00">дефект массы</span> не образуется
           </p>
         </div>
       </div>
@@ -92,7 +110,26 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    windowWidth: null
+  }),
+  methods: {
+    updateWindowWidth() {
+      this.windowWidth = window.innerWidth;
+    }
+  },
+  created() {
+    if (process.browser) {
+      window.addEventListener("resize", this.updateWindowWidth);
+    }
+  },
+  destroy() {
+    if (process.browser) {
+      window.removeEventListener("resize", this.updateWindowWidth);
+    }
+  }
+};
 </script>
 
 <style>
@@ -100,6 +137,9 @@ export default {};
   border-radius: 40px;
   background-color: #1a1f21;
   margin-bottom: 200px;
+}
+.carousel-indicators {
+  display: none;
 }
 .carousel_button {
   position: absolute;
@@ -136,9 +176,37 @@ export default {};
   margin-bottom: 40px;
 }
 .carousel_text {
+  max-width: 600px;
   font-size: 46px;
   line-height: 105%;
   letter-spacing: -0.04em;
   color: #7a838d;
+}
+@media (max-width: 767px) {
+  .carousel {
+    border-radius: 24px;
+    margin-bottom: 100px;
+  }
+  .carousel-indicators {
+    display: block;
+  }
+  .carousel_button {
+    display: none;
+  }
+  .carousel_body {
+    left: 28px;
+    top: 28px;
+  }
+  .carousel_title {
+    font-size: 13px;
+    line-height: 120%;
+    margin-bottom: 28px;
+  }
+  .carousel_text {
+    max-width: 240px;
+    font-size: 27px;
+    line-height: 120%;
+    letter-spacing: -0.05em;
+  }
 }
 </style>

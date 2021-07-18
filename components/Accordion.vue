@@ -1,100 +1,4 @@
 <template>
-  <!-- <div class="accordion" id="accordionExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button
-          class="accordion-button"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseOne"
-          aria-expanded="true"
-          aria-controls="collapseOne"
-        >
-          Accordion Item #1
-        </button>
-      </h2>
-      <div
-        id="collapseOne"
-        class="accordion-collapse collapse show"
-        aria-labelledby="headingOne"
-        data-bs-parent="#accordionExample"
-      >
-        <div class="accordion-body">
-          <strong>This is the first item's accordion body.</strong> It is shown
-          by default, until the collapse plugin adds the appropriate classes
-          that we use to style each element. These classes control the overall
-          appearance, as well as the showing and hiding via CSS transitions. You
-          can modify any of this with custom CSS or overriding our default
-          variables. It's also worth noting that just about any HTML can go
-          within the <code>.accordion-body</code>, though the transition does
-          limit overflow.
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <button
-          class="accordion-button collapsed"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseTwo"
-          aria-expanded="false"
-          aria-controls="collapseTwo"
-        >
-          Accordion Item #2
-        </button>
-      </h2>
-      <div
-        id="collapseTwo"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingTwo"
-        data-bs-parent="#accordionExample"
-      >
-        <div class="accordion-body">
-          <strong>This is the second item's accordion body.</strong> It is
-          hidden by default, until the collapse plugin adds the appropriate
-          classes that we use to style each element. These classes control the
-          overall appearance, as well as the showing and hiding via CSS
-          transitions. You can modify any of this with custom CSS or overriding
-          our default variables. It's also worth noting that just about any HTML
-          can go within the <code>.accordion-body</code>, though the transition
-          does limit overflow.
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <button
-          class="accordion-button collapsed"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseThree"
-          aria-expanded="false"
-          aria-controls="collapseThree"
-        >
-          Accordion Item #3
-        </button>
-      </h2>
-      <div
-        id="collapseThree"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingThree"
-        data-bs-parent="#accordionExample"
-      >
-        <div class="accordion-body">
-          <strong>This is the third item's accordion body.</strong> It is hidden
-          by default, until the collapse plugin adds the appropriate classes
-          that we use to style each element. These classes control the overall
-          appearance, as well as the showing and hiding via CSS transitions. You
-          can modify any of this with custom CSS or overriding our default
-          variables. It's also worth noting that just about any HTML can go
-          within the <code>.accordion-body</code>, though the transition does
-          limit overflow.
-        </div>
-      </div>
-    </div>
-  </div> -->
-
   <div class="accordion_list">
     <div class="accordion_list_title">Вопросы и ответы</div>
     <div class="accordion">
@@ -111,7 +15,9 @@
     </div>
     <div class="accordion">
       <input type="checkbox" id="accordion_2" class="accordion_input" />
-      <label for="accordion_2" class="accordion_title">Это безопасно?</label>
+      <label for="accordion_2" class="accordion_title"
+        >Фотон масштабирует межядерный поток?</label
+      >
       <div class="accordion_text">
         <p>
           В соответствии с принципом неопределенности, гетерогенная структура
@@ -180,8 +86,7 @@ export default {};
   border-radius: 50%;
   top: 32px;
   right: 32px;
-  transition: border-color 0.5s ease-in-out;
-  transition: transform 0.5s ease-in-out;
+  transition: all 0.5s ease-in;
 }
 
 .accordion:hover {
@@ -219,5 +124,38 @@ export default {};
   letter-spacing: -0.04em;
   color: #7a838d;
   transition: display 0.5s ease-in-out;
+}
+
+@media (max-width: 767px) {
+  .accordion_list {
+    margin-bottom: 100px;
+  }
+  .accordion_list_title {
+    font-size: 13px;
+    line-height: 120%;
+    margin-bottom: 28px;
+  }
+  .accordion {
+    border-radius: 15px;
+  }
+  .accordion_title {
+    font-size: 17px;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+    padding: 24px 44px 24px 24px;
+  }
+  .accordion_title::after {
+    height: 40px;
+    width: 40px;
+    top: 27px;
+    right: 20px;
+  }
+
+  .accordion_text {
+    padding: 0 24px 24px 24px;
+    font-size: 17px;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+  }
 }
 </style>

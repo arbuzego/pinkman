@@ -59,16 +59,6 @@ export default {
 </script>
 
 <style>
-input,
-select {
-  border: none;
-  background-image: none;
-  background-color: transparent;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  outline: none;
-}
 .form {
   margin-bottom: 60px;
 }
@@ -85,9 +75,6 @@ select {
 .form_body {
   background-color: #1a1f21;
   border-radius: 40px;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
 }
 .form_row {
   display: flex;
@@ -138,7 +125,7 @@ select {
 }
 
 .form_inputs_button {
-  max-width: 562px;
+  transition: all 0.1s ease-in;
   justify-content: center;
   align-items: center;
   padding: 32px 10px;
@@ -155,7 +142,6 @@ select {
   text-transform: uppercase;
   color: #121416;
   margin-bottom: 40px;
-  transition: background 5s ease-in-out;
 }
 
 .form_inputs_button:hover {
@@ -177,5 +163,52 @@ select {
 }
 .form_text_link {
   text-decoration: underline;
+}
+@media (max-width: 767px) {
+  .form {
+    margin-bottom: 40px;
+  }
+  .form_title {
+    display: none;
+  }
+  .form_body {
+    border-radius: 25px;
+  }
+  .form_row {
+    flex-direction: column;
+  }
+  .form_subTitle {
+    font-size: 27px;
+    line-height: 120%;
+    letter-spacing: -0.05em;
+    margin-bottom: 32px;
+  }
+  .form_inputs {
+    padding-left: 0;
+  }
+  .form_inputs_fullName,
+  .form_inputs_email,
+  .form_inputs_country {
+    padding: 16px 15px;
+    border-radius: 12px;
+    font-weight: normal;
+    font-size: 12px;
+  }
+  .form_inputs_country {
+    margin-bottom: 24px;
+  }
+
+  .form_inputs_button {
+    padding: 20px 25px 20px 25px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 32 px;
+  }
+
+  .form_text {
+    max-width: 250px;
+    letter-spacing: -0.02em;
+  }
 }
 </style>

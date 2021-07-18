@@ -11,7 +11,8 @@
   "dependencies": {
     "bootstrap": "^5.0.2",
     "core-js": "^3.15.1",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "vue-window-size": "^0.6.2"
   },
   "devDependencies": {}
 }
