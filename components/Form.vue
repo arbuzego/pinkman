@@ -9,18 +9,33 @@
             со мной
           </div>
           <div class="form_inputs">
-            <form class="form_inputs_row" @submit.prevent="onSubmit">
+            <form
+              class="form_inputs_row"
+              @submit.prevent="checkForm"
+              novalidate="true"
+            >
+              <p v-if="errors.length">
+                <b>Пожалуйста исправьте указанные ошибки:</b>
+                <ul>
+                  <li v-for="error,idx in errors" :key='error'>{{idx+1}}. {{ error }}</li>
+                </ul>
+              </p>
               <input
                 class="form_inputs_fullName"
                 v-model="fullName"
                 placeholder="Имя и фамилия"
+                type="text"
               />
               <input
                 class="form_inputs_email"
                 v-model="email"
                 placeholder="E-mail"
+                type="email"
               />
-              <select v-model="country" class="form_inputs_country">
+              <select
+                v-model="country"
+                class="form_inputs_country"
+              >
                 <option disabled selected>Страна</option>
                 <option class="form_inputs_country_option">Россия</option>
                 <option class="form_inputs_country_option">Украина</option>
@@ -50,12 +65,38 @@
 export default {
   data() {
     return {
+      errors: [],
       fullName: "",
       email: "",
       country: "Страна"
     };
+  },
+  methods: {
+    checkForm() {
+      this.errors = [];
+      if (!this.fullName.length) {
+        this.errors.push("Требуется указать имя и фамилию.");
+      }
+      if (!this.email.length) {
+        this.errors.push("Требуется указать E-mail.");
+      }else if (!this.validEmail(this.email)) {
+        this.errors.push('Укажите корректный адрес электронной почты.');
+      }
+      if (this.country === "Страна") {
+        this.errors.push("Требуется указать страну.");
+      }
+      if(!this.errors.length){
+        this.fullName= "",
+      this.email= "",
+      this.country= "Страна"
+      }
+    },
+    validEmail(email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
   }
-};
+  }
+}
 </script>
 
 <style>
