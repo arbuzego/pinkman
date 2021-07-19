@@ -1,0 +1,11 @@
+{
+  "form": {
+    "errors": [],
+    "fullName": "",
+    "email": "",
+    "country": "Страна"
+  },
+  "carousel": {
+    "windowWidth": 1000
+  }
+}

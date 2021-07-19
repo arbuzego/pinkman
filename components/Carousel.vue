@@ -121,12 +121,14 @@ export default {
   },
   created() {
     if (process.browser) {
+      window.addEventListener("load", this.updateWindowWidth);
       window.addEventListener("resize", this.updateWindowWidth);
     }
   },
   destroy() {
     if (process.browser) {
       window.removeEventListener("resize", this.updateWindowWidth);
+      window.removeEventListener("load", this.updateWindowWidth);
     }
   }
 };

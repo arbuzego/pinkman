@@ -62,13 +62,14 @@
 </template>
 
 <script>
+import data from '../static/data.json'
 export default {
   data() {
     return {
       errors: [],
       fullName: "",
       email: "",
-      country: "Страна"
+      country: data.form.country
     };
   },
   methods: {
@@ -94,7 +95,7 @@ export default {
     validEmail(email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
-  }
+  },
   }
 }
 </script>
