@@ -1,60 +1,30 @@
 <template>
-  <div class="accordion_list">
-    <div class="accordion_list_title">Вопросы и ответы</div>
-    <div class="accordion">
-      <input type="checkbox" id="accordion_1" class="accordion_input" />
-      <label for="accordion_1" class="accordion_title"
-        >Фотон масштабирует межядерный поток?</label
-      >
-      <div class="accordion_text">
-        <p>
-          В соответствии с принципом неопределенности, гетерогенная структура
-          трансформирует электронный взрыв.
-        </p>
-      </div>
-    </div>
-    <div class="accordion">
-      <input type="checkbox" id="accordion_2" class="accordion_input" />
-      <label for="accordion_2" class="accordion_title"
-        >Фотон масштабирует межядерный поток?</label
-      >
-      <div class="accordion_text">
-        <p>
-          В соответствии с принципом неопределенности, гетерогенная структура
-          трансформирует электронный взрыв.
-        </p>
-      </div>
-    </div>
-    <div class="accordion">
-      <input type="checkbox" id="accordion_3" class="accordion_input" />
-      <label for="accordion_3" class="accordion_title"
-        >Фотон масштабирует межядерный поток?</label
-      >
-      <div class="accordion_text">
-        <p>
-          В соответствии с принципом неопределенности, гетерогенная структура
-          трансформирует электронный взрыв.
-        </p>
-      </div>
+  <div class="accordion">
+    <input type="checkbox" :id="accordionId" class="accordion_input" />
+    <label :for="accordionId" class="accordion_title"
+      >Фотон масштабирует межядерный поток?</label
+    >
+    <div class="accordion_text">
+      <p>
+        В соответствии с принципом неопределенности, гетерогенная структура
+        трансформирует электронный взрыв.
+      </p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  props: {
+    accordionId: Number
+  }
+};
 </script>
 
 <style>
-.accordion_list {
-  margin-bottom: 150px;
-}
-.accordion_list_title {
-  font-size: 17px;
-  line-height: 100%;
-  text-transform: uppercase;
-  color: #00db00;
-  margin-bottom: 50px;
-}
 .accordion {
   background: #202426;
   border-radius: 28px;
@@ -74,9 +44,8 @@ export default {};
   content: "";
   display: block;
   position: absolute;
-  border: 1px;
   opacity: 0.3;
-  border: 1px solid #eff6ff;
+  border: 1px solid rgba(239, 246, 255);
   box-sizing: border-box;
   background-image: url("../static/images/Round S arroy right.png");
   background-repeat: no-repeat;
@@ -94,7 +63,8 @@ export default {};
 }
 
 .accordion:hover .accordion_title::after {
-  border-color: #15ff00;
+  border-color: rgba(0, 219, 0);
+  /* border-image: url("../static/images/border img hover.png") 10; */
 }
 
 .accordion_input {
@@ -127,14 +97,6 @@ export default {};
 }
 
 @media (max-width: 767px) {
-  .accordion_list {
-    margin-bottom: 100px;
-  }
-  .accordion_list_title {
-    font-size: 13px;
-    line-height: 120%;
-    margin-bottom: 28px;
-  }
   .accordion {
     border-radius: 15px;
   }

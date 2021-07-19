@@ -3,7 +3,7 @@
     <Navbar />
     <div class="wrapper">
       <Carousel />
-      <Accordion />
+      <AccordionList />
       <Form />
     </div>
   </div>
@@ -12,13 +12,13 @@
 <script>
 import Carousel from "../components/Carousel.vue";
 import Form from "../components/Form.vue";
-import Accordion from "../components/Accordion.vue";
+import AccordionList from "../components/AccordionList.vue";
 import Navbar from "../components/Navbar.vue";
 export default {
   components: {
     Carousel,
     Form,
-    Accordion,
+    AccordionList,
     Navbar
   }
 };
