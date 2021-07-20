@@ -32,18 +32,19 @@
                 placeholder="E-mail"
                 type="email"
               />
-              <select
-                v-model="country"
-                class="form_inputs_country"
-              >
-                <option disabled selected>Страна</option>
-                <option class="form_inputs_country_option">Россия</option>
-                <option class="form_inputs_country_option">Украина</option>
-                <option class="form_inputs_country_option">Казахстан</option>
-                <option class="form_inputs_country_option">Беларусь</option>
-                <option class="form_inputs_country_option">Таджикистан</option>
-              </select>
-
+              <div class="__select" data-state="">
+                <div class="select">
+                    <input class="select__input" type="hidden" name="" >
+                    <div class="select__head" >Страна</div>
+                      <ul class="select__list" style="display: none;">
+                        <li class="select__item">Россия</li>
+                        <li class="select__item">Украина</li>
+                        <li class="select__item">Казахстан</li>
+                        <li class="select__item">Беларусь</li>
+                        <li class="select__item">Таджикистан</li>
+                      </ul>
+                </div>
+              </div>
               <input
                 class="form_inputs_button"
                 type="submit"
@@ -69,7 +70,7 @@ export default {
       errors: [],
       fullName: "",
       email: "",
-      country: data.form.country
+      // country: ""
     };
   },
   methods: {
@@ -83,26 +84,132 @@ export default {
       }else if (!this.validEmail(this.email)) {
         this.errors.push('Укажите корректный адрес электронной почты.');
       }
-      if (this.country === "Страна") {
-        this.errors.push("Требуется указать страну.");
-      }
+      // if (!this.country.length) {
+      //   this.errors.push("Требуется указать страну.");
+      // }
       if(!this.errors.length){
         this.fullName= "",
-      this.email= "",
-      this.country= "Страна"
+      this.email= ""
+      // this.country= ""
       }
     },
     validEmail(email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
+    },
+    
   },
+  mounted(){
+    $(document).ready(function() {
+    jQuery(($) => {
+      });
+    $('.select').on('click', '.select__head', function () {
+        if ($(this).hasClass('open')) {
+            $(this).removeClass('open');
+            $(this).next().fadeOut();
+        } else {
+            $('.select__head').removeClass('open');
+            $('.select__list').fadeOut();
+            $(this).addClass('open');
+            $(this).next().fadeIn();
+        }
+    });
+
+    $('.select').on('click', '.select__item', function () {
+        $('.select__head').removeClass('open');
+        $(this).parent().fadeOut();
+        $(this).parent().prev().text($(this).text());
+        $(this).parent().prev().prev().val($(this).text());
+    });
+
+    $(document).click(function (e) {
+        if (!$(e.target).closest('.select').length) {
+            $('.select__head').removeClass('open');
+            $('.select__list').fadeOut();
+        }
+    });
+});
   }
 }
 </script>
 
 <style>
+.select {
+    position: relative;
+    display: block;
+} 
+
+.select__head::after {
+    width: 14px;
+    height: 14px;
+    background: url("/images/arroy for selecter.png") no-repeat center;
+    position: absolute;
+    right: 24px;
+    bottom: 50%;
+    transform: translateY(50%);
+    content: '';
+    display: block;
+    transition: .2s ease-in;
+}
+
+.select__head.open::after {
+    transform: translateY(50%) rotate(180deg);
+}
+
+.select__list {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    border: 1px solid #7a838d;
+  background: #272b2d;
+    border-radius: 16px;
+     font-size: 17px;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  color: #eff6ff;
+  padding: 12px}
+      /* overflow-x: hidden;
+      overflow-y: auto; 
+      z-index: 100;
+      margin: 0;
+      
+      scrollbar-color: dark;
+      scrollbar-width: thin;
+      overscroll-behavior: contain;
+
+
+.select__list::-webkit-scrollbar {
+    width: 7px;
+    background-color: #202426;
+    padding: 5px;
+    border-radius: 16px;
+}
+
+.select__list::-webkit-scrollbar-thumb {
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #1a1f21;
+} */
+
+.select__list .select__item {
+  background: #272b2d;
+  border-radius: 12px;
+    position: relative;
+    padding: 12px 16px;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+.select__list .select__item:hover {
+    color: rgba(0, 219, 0, 1);
+}
+.select__list .select__item:active {
+    background: #2f3234;
+}
 .form {
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 }
 .form_title {
   font-weight: 600;
@@ -138,10 +245,14 @@ export default {
 .form_inputs_fullName::placeholder,
 .form_inputs_email::placeholder {
   color: #eff6ff;
+  font-weight: normal;
+font-size: 17px;
+line-height: 150%;
+letter-spacing: -0.02em;
 }
 .form_inputs_fullName,
 .form_inputs_email,
-.form_inputs_country {
+.select__head  {
   max-width: 562px;
   border: 1px solid #1a1f21;
   padding: 20px 10px 20px 24px;
@@ -154,17 +265,19 @@ export default {
   color: #eff6ff;
   transition: border-color 0.5s ease-in-out;
 }
-.form_inputs_country {
+.select__head{
+  
   margin-bottom: 28px;
-}
+  }
 .form_inputs_email:hover,
 .form_inputs_email:focus,
 .form_inputs_fullName:hover,
 .form_inputs_fullName:focus,
-.form_inputs_country:hover,
-.form_inputs_country:focus {
+.select__head:hover,
+.select__head.open {
   border-color: #7a838d;
 }
+
 
 .form_inputs_button {
   transition: all 0.1s ease-in;
@@ -207,6 +320,10 @@ export default {
   text-decoration: underline;
 }
 @media (max-width: 767px) {
+  .form_inputs_fullName::placeholder,
+.form_inputs_email::placeholder {
+font-size: 12px;
+}
   .form {
     margin-bottom: 40px;
   }
@@ -230,13 +347,25 @@ export default {
   }
   .form_inputs_fullName,
   .form_inputs_email,
-  .form_inputs_country {
+  .select__head {
     padding: 16px 15px;
     border-radius: 12px;
     font-weight: normal;
     font-size: 12px;
   }
-  .form_inputs_country {
+  .select__list {
+    top: 60px;
+    border-radius: 12px;
+    font-size: 12px;
+    padding: 8px
+  }
+  .select__list .select__item {
+  border-radius: 12px;
+    padding: 8px 10px;
+    cursor: pointer;
+    list-style-type: none;
+}
+  .select__head {
     margin-bottom: 24px;
   }
 
