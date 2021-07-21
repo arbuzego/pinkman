@@ -14,21 +14,23 @@
               @submit.prevent="checkForm"
               novalidate="true"
             >
-              <p v-if="errors.length">
+              <p v-if="errorsList.length">
                 <b>Пожалуйста исправьте указанные ошибки:</b>
                 <ul>
-                  <li v-for="error,idx in errors" :key='error'>{{idx+1}}. {{ error }}</li>
+                  <li v-for="error,idx in errorsList" :key='error'>{{idx+1}}. {{ error }}</li>
                 </ul>
               </p>
               <input
                 class="form_inputs_fullName"
-                v-model="fullName"
+                :value="fullName"
+                @input="updateFullName"
                 placeholder="Имя и фамилия"
                 type="text"
               />
               <input
                 class="form_inputs_email"
-                v-model="email"
+                :value="email"
+                @input="updateEmail"
                 placeholder="E-mail"
                 type="email"
               />
@@ -63,41 +65,81 @@
 </template>
 
 <script>
-import data from '../static/data.json'
 export default {
-  data() {
-    return {
-      errors: [],
-      fullName: "",
-      email: "",
-      // country: ""
-    };
+  computed: {
+    country() {
+      return this.$store.getters.country;
+    },
+    errorsList() {
+      return this.$store.getters.errorsList;
+    },
+      fullName() {
+        return this.$store.getters.fullName;
+      },
+    email() {
+      return this.$store.getters.email;
+    }
   },
   methods: {
     checkForm() {
-      this.errors = [];
-      if (!this.fullName.length) {
-        this.errors.push("Требуется указать имя и фамилию.");
+      this.removeErrorsList()
+      if (!this.$store.getters.fullName.length) {
+        this.updateErrorsList("Требуется указать имя и фамилию.");
       }
-      if (!this.email.length) {
-        this.errors.push("Требуется указать E-mail.");
-      }else if (!this.validEmail(this.email)) {
-        this.errors.push('Укажите корректный адрес электронной почты.');
+      if (!this.$store.getters.email.length) {
+        this.updateErrorsList("Требуется указать E-mail.");
+      }else if (!this.validEmail(this.$store.getters.email)) {
+        this.updateErrorsList("Укажите корректный адрес электронной почты.");
       }
-      // if (!this.country.length) {
-      //   this.errors.push("Требуется указать страну.");
-      // }
-      if(!this.errors.length){
-        this.fullName= "",
-      this.email= ""
-      // this.country= ""
+      if (this.$store.getters.country==='Страна' || !this.$store.getters.country.length) {
+        this.updateErrorsList("Требуется указать страну.");
       }
+      if(!this.$store.getters.errorsList.length){
+        this.removeFullName(),
+        this.removeEmail(),
+        this.removeCountry(),
+        document.querySelector('.select__head').innerHTML='Страна'
+      }
+    },
+    updateCountry() {
+      this.$store.commit("updateCountry", document.querySelector('.select__head').innerHTML);
+    },
+    removeCountry(){
+      this.$store.commit("removeCountry");
+    },
+    updateFullName(event) {
+      this.$store.commit("updateFullName", event.target.value);
+    },
+    removeFullName(){
+      this.$store.commit("removeFullName");
+    },
+    updateEmail(event) {
+      this.$store.commit("updateEmail", event.target.value);
+    },
+    removeEmail(){
+      this.$store.commit("removeEmail");
+    },
+    updateErrorsList(error) {
+      this.$store.commit("updateErrorsList", error);
+    },
+    removeErrorsList(){
+      this.$store.commit("removeErrorsList");
     },
     validEmail(email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
     
+  },
+  created(){
+    if (process.browser) {
+      document.querySelector('.form_inputs_button').addEventListener("click", this.updateCountry);
+    }
+  },
+  destroy() {
+    if (process.browser) {
+      document.querySelector('.form_inputs_button').removeEventListener("click", this.updateCountry);
+    }
   },
   mounted(){
     $(document).ready(function() {
