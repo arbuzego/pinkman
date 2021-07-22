@@ -6,56 +6,20 @@ Vue.use(Vuex);
 const store = () =>
   new Vuex.Store({
     state: {
-      windowWidth: null,
-      country: "",
-      errorsList: [],
-      fullName: "",
-      email: ""
+      // users: JSON.parse(localStorage.getItem("users") || "[]")
+      users: []
     },
     mutations: {
-      updateWindowWidth(state, Width) {
-        state.windowWidth = Width;
-      },
-      updateCountry(state, Country) {
-        state.country = Country;
-      },
-      removeCountry(state) {
-        state.country = "";
-      },
-      updateFullName(state, FullName) {
-        state.fullName = FullName;
-      },
-      removeFullName(state) {
-        state.fullName = "";
-      },
-      updateEmail(state, Email) {
-        state.email = Email;
-      },
-      removeEmail(state) {
-        state.email = "";
-      },
-      updateErrorsList(state, Errors) {
-        state.errorsList.push(Errors);
-      },
-      removeErrorsList(state) {
-        state.errorsList = [];
+      updateUsers(state, user) {
+        state.users.push(user);
+        // if (process.browser) {
+        //   localStorage.setItem("users", JSON.stringify(state.users));
+        // }
       }
     },
-    getters: {
-      windowWidth: state => {
-        return state.windowWidth;
-      },
-      country: state => {
-        return state.country;
-      },
-      fullName: state => {
-        return state.fullName;
-      },
-      errorsList: state => {
-        return state.errorsList;
-      },
-      email: state => {
-        return state.email;
+    actions: {
+      updateUsers({ commit }, user) {
+        commit("updateUsers", user);
       }
     }
   });

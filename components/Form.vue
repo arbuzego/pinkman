@@ -22,15 +22,13 @@
               </p>
               <input
                 class="form_inputs_fullName"
-                :value="fullName"
-                @input="updateFullName"
+                v-model="fullName"
                 placeholder="Имя и фамилия"
                 type="text"
               />
               <input
                 class="form_inputs_email"
-                :value="email"
-                @input="updateEmail"
+                v-model="email"
                 placeholder="E-mail"
                 type="email"
               />
@@ -66,64 +64,43 @@
 
 <script>
 export default {
-  computed: {
-    country() {
-      return this.$store.getters.country;
-    },
-    errorsList() {
-      return this.$store.getters.errorsList;
-    },
-      fullName() {
-        return this.$store.getters.fullName;
-      },
-    email() {
-      return this.$store.getters.email;
+  data(){
+    return{
+fullName:'',
+email:'',
+country:'',
+errorsList:[]
     }
   },
   methods: {
     checkForm() {
-      this.removeErrorsList()
-      if (!this.$store.getters.fullName.length) {
-        this.updateErrorsList("Требуется указать имя и фамилию.");
+      this.errorsList=[]
+      if (!this.fullName.length) {
+        this.errorsList.push("Требуется указать имя и фамилию.");
       }
-      if (!this.$store.getters.email.length) {
-        this.updateErrorsList("Требуется указать E-mail.");
-      }else if (!this.validEmail(this.$store.getters.email)) {
-        this.updateErrorsList("Укажите корректный адрес электронной почты.");
+      if (!this.email.length) {
+        this.errorsList.push("Требуется указать E-mail.");
+      }else if (!this.validEmail(this.email)) {
+        this.errorsList.push("Укажите корректный адрес электронной почты.");
       }
-      if (this.$store.getters.country==='Страна' || !this.$store.getters.country.length) {
-        this.updateErrorsList("Требуется указать страну.");
+      if (this.country==='Страна' || !this.country.length) {
+        this.errorsList.push("Требуется указать страну.");
       }
-      if(!this.$store.getters.errorsList.length){
-        this.removeFullName(),
-        this.removeEmail(),
-        this.removeCountry(),
+      if(!this.errorsList.length){
+        const user = {
+          fullName: this.fullName,
+          email: this.email,
+          country:this.country
+        }
+        this.$store.dispatch("updateUsers", user)
+        this.fullName='',
+        this.email='',
+        this.country='',
         document.querySelector('.select__head').innerHTML='Страна'
       }
     },
     updateCountry() {
-      this.$store.commit("updateCountry", document.querySelector('.select__head').innerHTML);
-    },
-    removeCountry(){
-      this.$store.commit("removeCountry");
-    },
-    updateFullName(event) {
-      this.$store.commit("updateFullName", event.target.value);
-    },
-    removeFullName(){
-      this.$store.commit("removeFullName");
-    },
-    updateEmail(event) {
-      this.$store.commit("updateEmail", event.target.value);
-    },
-    removeEmail(){
-      this.$store.commit("removeEmail");
-    },
-    updateErrorsList(error) {
-      this.$store.commit("updateErrorsList", error);
-    },
-    removeErrorsList(){
-      this.$store.commit("removeErrorsList");
+      this.country = document.querySelector('.select__head').innerHTML;
     },
     validEmail(email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -212,28 +189,6 @@ export default {
   letter-spacing: -0.02em;
   color: #eff6ff;
   padding: 12px}
-      /* overflow-x: hidden;
-      overflow-y: auto; 
-      z-index: 100;
-      margin: 0;
-      
-      scrollbar-color: dark;
-      scrollbar-width: thin;
-      overscroll-behavior: contain;
-
-
-.select__list::-webkit-scrollbar {
-    width: 7px;
-    background-color: #202426;
-    padding: 5px;
-    border-radius: 16px;
-}
-
-.select__list::-webkit-scrollbar-thumb {
-    border-radius: 16px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid #1a1f21;
-} */
 
 .select__list .select__item {
   background: #272b2d;

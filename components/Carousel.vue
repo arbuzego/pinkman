@@ -111,15 +111,14 @@
 
 <script>
 export default {
-  computed: {
-    windowWidth() {
-      // return this.$store.getters.windowWidth;
-      return this.$store.getters.windowWidth;
-    }
+  data() {
+    return {
+      windowWidth: null
+    };
   },
   methods: {
     updateWindowWidth() {
-      this.$store.commit("updateWindowWidth", window.innerWidth);
+      this.windowWidth = window.innerWidth;
     }
   },
   created() {
