@@ -1,11 +1,9 @@
 {
-  "form": {
-    "errors": [],
-    "fullName": "",
-    "email": "",
-    "country": "Страна"
-  },
-  "carousel": {
-    "windowWidth": 1000
-  }
+  "users": [
+    {
+      "fullName": "Арбузов Егор",
+      "email": "denifenten2014@mail.ru",
+      "country": "Россия"
+    }
+  ]
 }
