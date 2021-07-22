@@ -11,7 +11,7 @@
           <div class="header_logo_title">logotype</div>
         </div>
         <div class="header_burger"></div>
-        <nav class="header_menu">
+        <nav class="active_menu header_menu ">
           <ul class="header_links">
             <li><a href="#">частица</a></li>
             <li><a href="#">частица</a></li>
@@ -27,7 +27,30 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    updateMenu() {
+      document.querySelector(".header_menu").classList.toggle("active_menu");
+      document
+        .querySelector(".header_burger")
+        .classList.toggle("burger_active");
+    }
+  },
+  created() {
+    if (process.browser) {
+      document
+        .querySelector(".header_burger")
+        .addEventListener("click", this.updateMenu);
+    }
+  },
+  destroy() {
+    if (process.browser) {
+      document
+        .querySelector(".header_burger")
+        .removeventListener("click", this.updateMenu);
+    }
+  }
+};
 </script>
 
 <style>
@@ -43,6 +66,7 @@ export default {};
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 .header_logo {
   align-items: center;
@@ -99,39 +123,77 @@ export default {};
   color: #121416;
 }
 @media (max-width: 767px) {
-  /* .header_burger {
+  .active_menu {
+    display: none;
+  }
+  .header_wrapper {
+    max-width: 600px;
+  }
+  .header_burger {
     display: block;
     position: relative;
-    background: rgba(196, 196, 196, 0.2);
+    background: #202426;
     border-radius: 14px;
     height: 40px;
     width: 50px;
+    border: 1px solid #202426;
   }
   .header_burger:before,
   .header_burger:after {
     content: "";
-    background-color: #eff6ff;
+    background: #eff6ff;
     width: 22px;
     height: 1px;
     position: absolute;
     left: 14px;
+    transition: all 0.5s ease-in;
   }
   .header_burger:before {
-    top: 16px;
+    top: 15px;
   }
   .header_burger:after {
-    bottom: 16px;
+    top: 22px;
+  }
+  /* .header_burger.burger_rotate::before {
+    transform: rotate(90deg);
+    top: 20px;
+    left: 10px;
+  }
+  .header_burger.burger_rotate::after {
+    transform: rotate(90deg);
+    left: unset;
+    top: 20px;
+    right: 10px;
+  } */
+  .header_burger.burger_active {
+    border: 1px solid #7a838d;
   }
   .header_menu {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background: yellow;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: #202426;
     z-index: 1;
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 8px;
+    border: 1px solid #7a838d;
   }
   .header_links {
-  } */
+    /* padding: 0;
+  margin: 0;
+  display: flex;
+  flex: 100%;
+  max-width: 448px;
+  justify-content: space-between;
+  font-size: 13px;
+  line-height: 100%;
+  text-transform: uppercase;
+  align-items: center; */
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
 }
 </style>
