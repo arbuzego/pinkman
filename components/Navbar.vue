@@ -8,7 +8,7 @@
             alt="Logo_image"
             class="header_logo_image"
           />
-          <div class="header_logo_title">logotype</div>
+          <a href="#" class="header_logo_title">logotype</a>
         </div>
         <div class="header_burger"></div>
         <nav class="active_menu header_menu ">

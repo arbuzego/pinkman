@@ -4,7 +4,7 @@
     class="carousel slide"
     data-bs-ride="carousel"
   >
-    <div class="carousel-indicators">
+    <div class="carousel-indicators position">
       <button
         type="button"
         data-bs-target="#carouselExampleCaptions"
@@ -137,6 +137,18 @@ export default {
 </script>
 
 <style>
+.position {
+  margin: 0 0 28px 28px;
+}
+.carousel-indicators button {
+  border: none !important;
+  height: 8px !important;
+  width: 8px !important;
+  border-radius: 50%;
+  background-color: #eff6ff !important;
+  padding: 0 !important;
+  margin: 0 8px 0 0 !important;
+}
 .carousel {
   border-radius: 40px;
   background-color: #1a1f21;

@@ -39,6 +39,7 @@ export default {
   letter-spacing: -0.04em;
   color: #eff6ff;
   padding: 36px;
+  cursor: pointer;
 }
 .accordion_title::after {
   content: "";

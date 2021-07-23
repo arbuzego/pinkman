@@ -52,7 +52,7 @@
               />
               <div class="form_text">
                 Нажимая «Получить консультацию» вы соглашаетесь с
-                <span class="form_text_link">политикой конфиденциальности</span>
+                <a href="#" class="form_text_link">политикой конфиденциальности</a>
               </div>
             </form>
           </div>
@@ -156,6 +156,7 @@ errorsList:[]
 .select {
     position: relative;
     display: block;
+    cursor: pointer;
 } 
 
 .select__head::after {
@@ -314,7 +315,8 @@ letter-spacing: -0.02em;
   color: #7a838d;
 }
 .form_text_link {
-  text-decoration: underline;
+  color: #7a838d !important;
+  text-decoration: underline !important;
 }
 @media (max-width: 767px) {
   .form_inputs_fullName::placeholder,
