@@ -22,7 +22,6 @@ export default {
 }
 .accordion_list_title {
   font-size: 17px;
-  line-height: 100%;
   text-transform: uppercase;
   color: #00db00;
   margin-bottom: 50px;
@@ -33,7 +32,6 @@ export default {
     margin-bottom: 100px;
   }
   .accordion_list_title {
-    font-size: 13px;
     line-height: 120%;
     margin-bottom: 28px;
   }

@@ -153,61 +153,8 @@ errorsList:[]
 </script>
 
 <style>
-.select {
-    position: relative;
-    display: block;
-    cursor: pointer;
-} 
-
-.select__head::after {
-    width: 14px;
-    height: 14px;
-    background: url("/images/arroy for selecter.png") no-repeat center;
-    position: absolute;
-    right: 24px;
-    bottom: 50%;
-    transform: translateY(50%);
-    content: '';
-    display: block;
-    transition: .2s ease-in;
-}
-
-.select__head.open::after {
-    transform: translateY(50%) rotate(180deg);
-}
-
-.select__list {
-    display: none;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    right: 0;
-    border: 1px solid #7a838d;
-  background: #272b2d;
-    border-radius: 16px;
-     font-size: 17px;
-  line-height: 150%;
-  letter-spacing: -0.02em;
-  color: #eff6ff;
-  padding: 12px}
-
-.select__list .select__item {
-  background: #272b2d;
-  border-radius: 12px;
-    position: relative;
-    padding: 12px 16px;
-    cursor: pointer;
-    list-style-type: none;
-}
-
-.select__list .select__item:hover {
-    color: rgba(0, 219, 0, 1);
-}
-.select__list .select__item:active {
-    background: #2f3234;
-}
 .form {
-  margin-bottom: 70px;
+  margin-bottom: 115px;
 }
 .form_title {
   font-weight: 600;
@@ -243,7 +190,7 @@ errorsList:[]
 .form_inputs_fullName::placeholder,
 .form_inputs_email::placeholder {
   color: #eff6ff;
-  font-weight: normal;
+  font-weight: 400;
 font-size: 17px;
 line-height: 150%;
 letter-spacing: -0.02em;
@@ -256,6 +203,7 @@ letter-spacing: -0.02em;
   padding: 20px 10px 20px 24px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
+  font-weight: 400;
   font-size: 17px;
   line-height: 150%;
   letter-spacing: -0.02em;
@@ -265,7 +213,7 @@ letter-spacing: -0.02em;
 }
 .select__head{
   
-  margin-bottom: 28px;
+  margin-bottom: unset;
   }
 .form_inputs_email:hover,
 .form_inputs_email:focus,
@@ -276,6 +224,64 @@ letter-spacing: -0.02em;
   border-color: #7a838d;
 }
 
+.select {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    margin-bottom: 28px;
+} 
+
+.select__head::after {
+    width: 14px;
+    height: 14px;
+    background: url("/images/arroy for selecter.png") no-repeat center;
+    position: absolute;
+    right: 24px;
+    bottom: 50%;
+    transform: translateY(50%);
+    content: '';
+    display: block;
+    transition: .2s ease-in;
+}
+
+.select__head.open::after {
+    transform: translateY(50%) rotate(180deg);
+}
+.select__head:checked ~.form {
+  margin-bottom: 150px;
+}
+
+.select__list {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    border: 1px solid #7a838d;
+  background: #272b2d;
+    border-radius: 16px;
+    font-weight: 400;
+     font-size: 17px;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  color: #eff6ff;
+  padding: 12px}
+
+.select__list .select__item {
+  background: #272b2d;
+  border-radius: 12px;
+    position: relative;
+    padding: 16px 12px;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+.select__list .select__item:hover {
+    color: rgba(0, 219, 0, 1);
+}
+.select__list .select__item:active {
+    background: #2f3234;
+}
 
 .form_inputs_button {
   transition: all 0.1s ease-in;
@@ -291,7 +297,6 @@ letter-spacing: -0.02em;
   box-shadow: 0px 10px 50px rgba(29, 208, 82, 0.3);
   border-radius: 28px;
   font-size: 17px;
-  line-height: 100%;
   text-transform: uppercase;
   color: #121416;
   margin-bottom: 40px;
@@ -309,7 +314,7 @@ letter-spacing: -0.02em;
 }
 
 .form_text {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 12px;
   line-height: 150%;
   color: #7a838d;
@@ -344,12 +349,14 @@ font-size: 12px;
   .form_inputs {
     padding-left: 0;
   }
+  .select{
+    margin-bottom: 24px;
+  }
   .form_inputs_fullName,
   .form_inputs_email,
   .select__head {
     padding: 16px 15px;
     border-radius: 12px;
-    font-weight: normal;
     font-size: 12px;
   }
   .select__list {
@@ -360,13 +367,10 @@ font-size: 12px;
   }
   .select__list .select__item {
   border-radius: 12px;
-    padding: 8px 10px;
+    padding: 8px 7px;
     cursor: pointer;
     list-style-type: none;
 }
-  .select__head {
-    margin-bottom: 24px;
-  }
 
   .form_inputs_button {
     padding: 20px 25px 20px 25px;

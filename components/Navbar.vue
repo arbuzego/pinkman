@@ -11,7 +11,7 @@
           <a href="#" class="header_logo_title">logotype</a>
         </div>
         <div class="header_burger"></div>
-        <nav class="active_menu header_menu ">
+        <nav class="deactive_menu header_menu ">
           <ul class="header_links">
             <li><a href="#">частица</a></li>
             <li><a href="#">частица</a></li>
@@ -30,7 +30,7 @@
 export default {
   methods: {
     updateMenu() {
-      document.querySelector(".header_menu").classList.toggle("active_menu");
+      document.querySelector(".header_menu").classList.toggle("deactive_menu");
       document
         .querySelector(".header_burger")
         .classList.toggle("burger_active");
@@ -71,9 +71,8 @@ export default {
 .header_logo {
   align-items: center;
   display: flex;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 20px;
-  line-height: 100%;
   text-transform: uppercase;
 }
 .header_logo_image {
@@ -95,8 +94,6 @@ export default {
   flex: 100%;
   max-width: 448px;
   justify-content: space-between;
-  font-size: 13px;
-  line-height: 100%;
   text-transform: uppercase;
   align-items: center;
 }
@@ -110,8 +107,6 @@ export default {
   background: rgba(239, 246, 255, 0.15);
   border-radius: 18px;
   padding: 16px 20px;
-  font-size: 13px;
-  line-height: 100%;
   text-transform: uppercase;
   color: #eff6ff;
   font-style: normal;
@@ -123,9 +118,12 @@ export default {
   color: #121416;
 }
 @media (max-width: 767px) {
-  .active_menu {
+  .header_logo {
+    font-size: 16px;
+  }
+  .deactive_menu {
     display: none;
-    border-color: #202426;
+    /* border-color: #202426; */
   }
   .header_wrapper {
     max-width: 600px;
@@ -170,6 +168,25 @@ export default {
     border-radius: 16px;
     padding: 8px;
     border: 1px solid #7a838d;
+    animation-name: open;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
+  }
+  @keyframes open {
+    0% {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
   }
   .header_links {
     flex-direction: column;

@@ -41,7 +41,7 @@
           alt="..."
         />
         <div class="carousel_body">
-          <h5 class="carousel_title">Метка первого слайда</h5>
+          <h5 class="carousel_title">Квантовый характер</h5>
           <p class="carousel_text">
             Жидкость <span style="color:#00DB00">заряжает</span> электронный
             <span style="color:#eff6ff">гамма-квант</span>, при этом
@@ -63,7 +63,7 @@
           alt="..."
         />
         <div class="carousel_body">
-          <h5 class="carousel_title">Метка второго слайда</h5>
+          <h5 class="carousel_title">Квантовый характер</h5>
           <p class="carousel_text">
             Жидкость <span style="color:#eff6ff">заряжает</span> электронный
             <span style="color:#00DB00">гамма-квант</span>, при этом
@@ -85,7 +85,7 @@
           alt="..."
         />
         <div class="carousel_body">
-          <h5 class="carousel_title">Метка третьего слайда</h5>
+          <h5 class="carousel_title">Квантовый характер</h5>
           <p class="carousel_text">
             Жидкость <span style="color: #eff6ff">заряжает</span> электронный
             <span style="color:#eff6ff">гамма-квант</span>, при этом
@@ -186,7 +186,6 @@ export default {
 }
 .carousel_title {
   font-size: 17px;
-  line-height: 100%;
   text-transform: uppercase;
   color: #00db00;
   margin-bottom: 40px;
@@ -219,7 +218,7 @@ export default {
     margin-bottom: 28px;
   }
   .carousel_text {
-    max-width: 240px;
+    max-width: 260px;
     font-size: 27px;
     line-height: 120%;
     letter-spacing: -0.05em;

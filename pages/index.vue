@@ -106,14 +106,36 @@ h6 {
 /*--------------------*/
 
 @font-face {
-  font-family: "SM Sans";
+  font-family: "SB Sans";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-display: swap;
   src: url("~assets/fonts/SBSansText-Regular.woff") format("truetype");
 }
+@font-face {
+  font-family: "SB Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("~assets/fonts/SBSansText-Medium.woff") format("truetype");
+}
+@font-face {
+  font-family: "SB Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("~assets/fonts/SBSansDisplay-SemiBold.woff") format("truetype");
+}
+@font-face {
+  font-family: "SB Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("~assets/fonts/SBSansText-Bold.woff") format("truetype");
+}
 .body {
   background-color: black;
+  font-family: "SB Sans";
   font-style: normal;
   font-weight: 500;
   font-size: 13px;

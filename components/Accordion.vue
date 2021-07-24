@@ -87,14 +87,32 @@ export default {
 }
 
 .accordion_text {
-  padding: 0 36px 36px 36px;
+  padding: 12px 36px 36px 36px;
+  max-width: 800px;
   display: none;
-  max-width: 750px;
   font-size: 24px;
   line-height: 125%;
   letter-spacing: -0.04em;
   color: #7a838d;
-  transition: display 0.5s ease-in-out;
+  animation-name: open;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: 0s;
+}
+@keyframes open {
+  0% {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 @media (max-width: 767px) {
@@ -102,6 +120,7 @@ export default {
     border-radius: 15px;
   }
   .accordion_title {
+    font-weight: 400;
     font-size: 17px;
     line-height: 23px;
     letter-spacing: -0.02em;
@@ -115,7 +134,8 @@ export default {
   }
 
   .accordion_text {
-    padding: 0 24px 24px 24px;
+    font-weight: 400;
+    padding: 16px 24px 24px 24px;
     font-size: 17px;
     line-height: 23px;
     letter-spacing: -0.02em;
