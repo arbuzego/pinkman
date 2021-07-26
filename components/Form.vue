@@ -32,19 +32,12 @@
                 placeholder="E-mail"
                 type="email"
               />
-              <div class="__select" data-state="">
                 <div class="select">
-                    <input class="select__input" type="hidden" name="" >
-                    <div class="select__head" >Страна</div>
-                      <ul class="select__list" style="display: none;">
-                        <li class="select__item">Россия</li>
-                        <li class="select__item">Украина</li>
-                        <li class="select__item">Казахстан</li>
-                        <li class="select__item">Беларусь</li>
-                        <li class="select__item">Таджикистан</li>
+                    <div class="select__head" @click="showSelectItems">{{country}}</div>
+                      <ul class="select__list" :class="{select__list_active:showItems}" >
+                        <li @click="selectItem(elem)" class="select__item" v-for="elem in countryList" :key="elem">{{elem}}</li>
                       </ul>
                 </div>
-              </div>
               <input
                 class="form_inputs_button"
                 type="submit"
@@ -66,10 +59,12 @@
 export default {
   data(){
     return{
-fullName:'',
-email:'',
-country:'',
-errorsList:[]
+      showItems:false,
+      fullName:'',
+      email:'',
+      country:'Страна',
+      errorsList:[],
+      countryList:['Россия', 'Украина', 'Казахстан', 'Беларусь', 'Таджикистан']
     }
   },
   methods: {
@@ -95,12 +90,15 @@ errorsList:[]
         this.$store.dispatch("updateUsers", user)
         this.fullName='',
         this.email='',
-        this.country='',
-        document.querySelector('.select__head').innerHTML='Страна'
+        this.country='Страна'
       }
     },
-    updateCountry() {
-      this.country = document.querySelector('.select__head').innerHTML;
+    showSelectItems(){
+      this.showItems=!this.showItems
+    },
+    selectItem(country){
+      this.country=country
+      this.showSelectItems()
     },
     validEmail(email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -108,47 +106,6 @@ errorsList:[]
     },
     
   },
-  created(){
-    if (process.browser) {
-      document.querySelector('.form_inputs_button').addEventListener("click", this.updateCountry);
-    }
-  },
-  destroy() {
-    if (process.browser) {
-      document.querySelector('.form_inputs_button').removeEventListener("click", this.updateCountry);
-    }
-  },
-  mounted(){
-    $(document).ready(function() {
-    jQuery(($) => {
-      });
-    $('.select').on('click', '.select__head', function () {
-        if ($(this).hasClass('open')) {
-            $(this).removeClass('open');
-            $(this).next().fadeOut();
-        } else {
-            $('.select__head').removeClass('open');
-            $('.select__list').fadeOut();
-            $(this).addClass('open');
-            $(this).next().fadeIn();
-        }
-    });
-
-    $('.select').on('click', '.select__item', function () {
-        $('.select__head').removeClass('open');
-        $(this).parent().fadeOut();
-        $(this).parent().prev().text($(this).text());
-        $(this).parent().prev().prev().val($(this).text());
-    });
-
-    $(document).click(function (e) {
-        if (!$(e.target).closest('.select').length) {
-            $('.select__head').removeClass('open');
-            $('.select__list').fadeOut();
-        }
-    });
-});
-  }
 }
 </script>
 
@@ -251,21 +208,46 @@ letter-spacing: -0.02em;
   margin-bottom: 150px;
 }
 
+.select__list_active{
+  display:block !important;
+}
+
 .select__list {
-    display: none;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    right: 0;
-    border: 1px solid #7a838d;
+  display: none;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  border: 1px solid #7a838d;
   background: #272b2d;
-    border-radius: 16px;
-    font-weight: 400;
-     font-size: 17px;
+  border-radius: 16px;
+  font-weight: 400;
+  font-size: 17px;
   line-height: 150%;
   letter-spacing: -0.02em;
   color: #eff6ff;
-  padding: 12px}
+  padding: 12px;
+  animation-name: open;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
+  }
+  @keyframes open {
+    0% {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  
 
 .select__list .select__item {
   background: #272b2d;

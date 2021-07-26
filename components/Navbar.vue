@@ -10,8 +10,12 @@
           />
           <a href="#" class="header_logo_title">logotype</a>
         </div>
-        <div class="header_burger"></div>
-        <nav class="deactive_menu header_menu ">
+        <div
+          class="header_burger"
+          :class="{ burger_active: activeBurger }"
+          @click="updateMenu"
+        ></div>
+        <nav class="header_menu " :class="{ deactive_menu: showMenu }">
           <ul class="header_links">
             <li><a href="#">частица</a></li>
             <li><a href="#">частица</a></li>
@@ -28,26 +32,16 @@
 
 <script>
 export default {
+  data() {
+    return {
+      activeBurger: false,
+      showMenu: true
+    };
+  },
   methods: {
     updateMenu() {
-      document.querySelector(".header_menu").classList.toggle("deactive_menu");
-      document
-        .querySelector(".header_burger")
-        .classList.toggle("burger_active");
-    }
-  },
-  created() {
-    if (process.browser) {
-      document
-        .querySelector(".header_burger")
-        .addEventListener("click", this.updateMenu);
-    }
-  },
-  destroy() {
-    if (process.browser) {
-      document
-        .querySelector(".header_burger")
-        .removeventListener("click", this.updateMenu);
+      (this.activeBurger = !this.activeBurger),
+        (this.showMenu = !this.showMenu);
     }
   }
 };
