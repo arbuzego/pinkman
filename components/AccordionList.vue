@@ -1,8 +1,8 @@
 <template>
   <div class="accordion_list">
     <div class="accordion_list_title">Вопросы и ответы</div>
-    <div v-for="elem in 5" :key="elem">
-      <Accordion :accordionId="elem" />
+    <div v-for="elem in accordionsData" :key="elem.id">
+      <Accordion :accordionData="elem" />
     </div>
   </div>
 </template>
@@ -10,6 +10,9 @@
 <script>
 import Accordion from "./Accordion.vue";
 export default {
+  props: {
+    accordionsData: Array
+  },
   components: {
     Accordion
   }

@@ -1,13 +1,12 @@
 <template>
   <div class="accordion">
-    <input type="checkbox" :id="accordionId" class="accordion_input" />
-    <label :for="accordionId" class="accordion_title"
-      >Фотон масштабирует межядерный поток?</label
-    >
+    <input type="checkbox" :id="accordionData.id" class="accordion_input" />
+    <label :for="accordionData.id" class="accordion_title">{{
+      accordionData.title
+    }}</label>
     <div class="accordion_text">
       <p>
-        В соответствии с принципом неопределенности, гетерогенная структура
-        трансформирует электронный взрыв.
+        {{ accordionData.text }}
       </p>
     </div>
   </div>
@@ -19,7 +18,7 @@ export default {
     return {};
   },
   props: {
-    accordionId: Number
+    accordionData: Object
   }
 };
 </script>

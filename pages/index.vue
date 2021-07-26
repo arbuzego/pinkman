@@ -1,11 +1,8 @@
 <template>
-  <div class="body">
-    <Navbar />
-    <div class="wrapper">
-      <Carousel />
-      <AccordionList />
-      <Form />
-    </div>
+  <div class="wrapper">
+    <Carousel :carouselData="carouselData" />
+    <AccordionList :accordionsData="accordionsData" />
+    <Form />
   </div>
 </template>
 
@@ -13,13 +10,19 @@
 import Carousel from "../components/Carousel.vue";
 import Form from "../components/Form.vue";
 import AccordionList from "../components/AccordionList.vue";
-import Navbar from "../components/Navbar.vue";
+import data from "../static/data.json";
 export default {
+  layout: "newLayouts.vue",
   components: {
     Carousel,
     Form,
-    AccordionList,
-    Navbar
+    AccordionList
+  },
+  data() {
+    return {
+      carouselData: data.carouselData,
+      accordionsData: data.accordionsData
+    };
   }
 };
 </script>
@@ -132,16 +135,6 @@ h6 {
   font-weight: 700;
   font-display: swap;
   src: url("~assets/fonts/SBSansText-Bold.woff") format("truetype");
-}
-.body {
-  background-color: black;
-  font-family: "SB Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 100%;
-  color: #eff6ff;
-  height: 100%;
 }
 .wrapper {
   margin: 0 auto;

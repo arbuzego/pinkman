@@ -27,70 +27,26 @@
       ></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div
+        v-for="slide of carouselData"
+        :key="slide.largeImg"
+        :class="slide.class"
+      >
         <img
           v-if="windowWidth > 767"
-          src="../static/images/Illustrations Large Card One.png"
+          :src="require(`@/static/images/${slide.largeImg}`)"
           class="d-block w-100"
           alt="..."
         />
         <img
           v-else
-          src="../static/images/Illustrations Small Card One.png"
+          :src="require(`../static/images/${slide.smallImg}`)"
           class="d-block w-100"
           alt="..."
         />
         <div class="carousel_body">
-          <h5 class="carousel_title">Квантовый характер</h5>
-          <p class="carousel_text">
-            Жидкость <span style="color:#00DB00">заряжает</span> электронный
-            <span style="color:#eff6ff">гамма-квант</span>, при этом
-            <span style="color:#eff6ff">дефект массы</span> не образуется
-          </p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img
-          v-if="windowWidth > 767"
-          src="../static/images/Illustrations Large Card Two.png"
-          class="d-block w-100"
-          alt="..."
-        />
-        <img
-          v-else
-          src="../static/images/Illustrations Small Card Two.png"
-          class="d-block w-100"
-          alt="..."
-        />
-        <div class="carousel_body">
-          <h5 class="carousel_title">Квантовый характер</h5>
-          <p class="carousel_text">
-            Жидкость <span style="color:#eff6ff">заряжает</span> электронный
-            <span style="color:#00DB00">гамма-квант</span>, при этом
-            <span style="color:#eff6ff">дефект массы</span> не образуется
-          </p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img
-          v-if="windowWidth > 767"
-          src="../static/images/Illustrations Large Card Three.png"
-          class="d-block w-100"
-          alt="..."
-        />
-        <img
-          v-else
-          src="../static/images/Illustrations Small Card Three.png"
-          class="d-block w-100"
-          alt="..."
-        />
-        <div class="carousel_body">
-          <h5 class="carousel_title">Квантовый характер</h5>
-          <p class="carousel_text">
-            Жидкость <span style="color: #eff6ff">заряжает</span> электронный
-            <span style="color:#eff6ff">гамма-квант</span>, при этом
-            <span style="color:#00DB00">дефект массы</span> не образуется
-          </p>
+          <h5 class="carousel_title">{{ slide.title }}</h5>
+          <p class="carousel_text" v-html="slide.body"></p>
         </div>
       </div>
     </div>
@@ -111,6 +67,9 @@
 
 <script>
 export default {
+  props: {
+    carouselData: Array
+  },
   data() {
     return {
       windowWidth: null
