@@ -4,11 +4,11 @@
       <div class="header_row">
         <div class="header_logo">
           <img
-            src="../static/images/logo image.png"
+            :src="require(`../static/images/${navBarData.logoImg}`)"
             alt="Logo_image"
             class="header_logo_image"
           />
-          <a href="#" class="header_logo_title">logotype</a>
+          <a href="#" class="header_logo_title">{{ navBarData.logoTitle }}</a>
         </div>
         <div
           class="header_burger"
@@ -17,13 +17,11 @@
         ></div>
         <nav class="header_menu " :class="{ deactive_menu: showMenu }">
           <ul class="header_links">
-            <li><a href="#">частица</a></li>
-            <li><a href="#">частица</a></li>
-            <li><a href="#">частица</a></li>
-            <li><a href="#">частица</a></li>
-            <li><a href="#">частица</a></li>
+            <li v-for="(link, idx) in navBarData.headerLinks" :key="idx">
+              <a href="#">{{ link }}</a>
+            </li>
           </ul>
-          <button class="header_buton">Квантовый характер</button>
+          <button class="header_buton">{{ navBarData.buttonName }}</button>
         </nav>
       </div>
     </div>
@@ -32,6 +30,11 @@
 
 <script>
 export default {
+  computed: {
+    navBarData() {
+      return this.$store.getters.navBarData;
+    }
+  },
   data() {
     return {
       activeBurger: false,
