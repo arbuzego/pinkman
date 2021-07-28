@@ -14,20 +14,11 @@ export default {
       { name: "format-detection", content: "telephone=no" }
     ],
     link: [],
-
-    script: [
-      {
-        src:
-          "https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js",
-        integrity:
-          "sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4",
-        crossorigin: "anonymous"
-      }
-    ]
+    script: []
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["@/node_modules/bootstrap/dist/css/bootstrap.min.css"],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],

@@ -13,7 +13,7 @@
         <div
           class="header_burger"
           :class="{ burger_active: activeBurger }"
-          @click="updateMenu"
+          @click="(activeBurger = !activeBurger), (showMenu = !showMenu)"
         ></div>
         <nav class="header_menu " :class="{ deactive_menu: showMenu }">
           <ul class="header_links">
@@ -40,12 +40,6 @@ export default {
       activeBurger: false,
       showMenu: true
     };
-  },
-  methods: {
-    updateMenu() {
-      (this.activeBurger = !this.activeBurger),
-        (this.showMenu = !this.showMenu);
-    }
   }
 };
 </script>

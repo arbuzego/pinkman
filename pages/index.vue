@@ -1,22 +1,22 @@
 <template>
   <div class="wrapper">
-    <Carousel :carouselData="carouselData" />
+    <Swiper :carouselData="carouselData" />
     <AccordionList :accordionsData="accordionsData" />
     <Form />
   </div>
 </template>
 
 <script>
-import Carousel from "../components/Carousel.vue";
 import Form from "../components/Form.vue";
 import AccordionList from "../components/AccordionList.vue";
 import data from "../static/data.json";
+import Swiper from "../components/Swiper.vue";
 export default {
-  layout: "newLayouts.vue",
+  layout: "newLayouts",
   components: {
-    Carousel,
     Form,
-    AccordionList
+    AccordionList,
+    Swiper
   },
   data() {
     return {

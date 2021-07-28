@@ -3,21 +3,18 @@
     {
       "largeImg": "Illustrations Large Card One.png",
       "smallImg": "Illustrations Small Card One.png",
-      "class": "carousel-item active",
       "title": "Квантовый характер",
       "body": "Жидкость <span style='color:#00DB00'>заряжает</span> электронный <span style='color:#eff6ff'>гамма-квант</span>, при этом <span style='color:#eff6ff'>дефект массы</span> не образуется"
     },
     {
       "largeImg": "Illustrations Large Card Two.png",
       "smallImg": "Illustrations Small Card Two.png",
-      "class": "carousel-item",
       "title": "Квантовый характер",
       "body": "Жидкость <span style='color:#eff6ff'>заряжает</span> электронный <span style='color:#00DB00'>гамма-квант</span>, при этом <span style='color:#eff6ff'>дефект массы</span> не образуется"
     },
     {
       "largeImg": "Illustrations Large Card Three.png",
       "smallImg": "Illustrations Small Card Three.png",
-      "class": "carousel-item",
       "title": "Квантовый характер",
       "body": "Жидкость <span style='color:color:#eff6ff'>заряжает</span> электронный <span style='color:#eff6ff'>гамма-квант</span>, при этом <span style='color:#00DB00'>дефект массы</span> не образуется"
     }

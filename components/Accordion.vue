@@ -1,13 +1,20 @@
 <template>
   <div class="accordion">
-    <input type="checkbox" :id="accordionData.id" class="accordion_input" />
-    <label :for="accordionData.id" class="accordion_title">{{
-      accordionData.title
-    }}</label>
-    <div class="accordion_text">
-      <p>
-        {{ accordionData.text }}
-      </p>
+    <div
+      @click="showText = !showText"
+      class="accordion_title"
+      :class="{ active: showText }"
+    >
+      {{ accordionData.title }}
+      <div
+        class="accordion_text"
+        ref="myText"
+        :style="[showText ? { height: computedHeight, marginTop: '12px' } : {}]"
+      >
+        <p>
+          {{ accordionData.text }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -15,10 +22,32 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      showText: false,
+      computedHeight: 0
+    };
   },
   props: {
     accordionData: Object
+  },
+  methods: {
+    initHeight() {
+      this.$refs["myText"].style.height = "auto";
+      this.$refs["myText"].style.position = "absolute";
+      this.$refs["myText"].style.visibility = "hidden";
+      this.$refs["myText"].style.display = "block";
+
+      const height = getComputedStyle(this.$refs["myText"]).height;
+      this.computedHeight = height;
+
+      this.$refs["myText"].style.position = null;
+      this.$refs["myText"].style.visibility = null;
+      this.$refs["myText"].style.display = null;
+      this.$refs["myText"].style.height = 0;
+    }
+  },
+  mounted() {
+    this.initHeight();
   }
 };
 </script>
@@ -40,6 +69,7 @@ export default {
   padding: 36px;
   cursor: pointer;
 }
+
 .accordion_title::after {
   content: "";
   display: block;
@@ -57,61 +87,26 @@ export default {
   right: 32px;
   transition: all 0.5s ease-in;
 }
-
+.accordion_title.active::after {
+  transform: rotate(-90deg);
+}
 .accordion:hover {
   background: #2f3234;
 }
 
 .accordion:hover .accordion_title::after {
   border-color: rgba(0, 219, 0);
-  /* border-image: url("../static/images/border img hover.png") 10; */
-}
-
-.accordion_input {
-  appearance: none;
-  -webkit-appearance: none;
-  position: absolute;
-  width: 0;
-  height: 0;
-}
-
-.accordion_input:checked ~ .accordion_title:after {
-  transform: rotate(-90deg);
-}
-.accordion_input:checked ~ .accordion_title {
-  padding-bottom: 0;
-}
-.accordion_input:checked ~ .accordion_text {
-  display: block;
 }
 
 .accordion_text {
-  padding: 12px 36px 36px 36px;
+  height: 0;
+  overflow: hidden;
+  transition: 1s;
   max-width: 800px;
-  display: none;
   font-size: 24px;
   line-height: 125%;
   letter-spacing: -0.04em;
   color: #7a838d;
-  animation-name: open;
-  animation-duration: 2s;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-  animation-timing-function: ease-out;
-  animation-fill-mode: forwards;
-  animation-delay: 0s;
-}
-@keyframes open {
-  0% {
-    display: none;
-    opacity: 0;
-    visibility: hidden;
-  }
-  100% {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-  }
 }
 
 @media (max-width: 767px) {

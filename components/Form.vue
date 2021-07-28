@@ -248,6 +248,7 @@ letter-spacing: -0.02em;
     }
   }
   
+  
 
 .select__list .select__item {
   background: #272b2d;

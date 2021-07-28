@@ -9,12 +9,19 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@dafcoe/vue-collapsible-panel": "^0.2.0",
+    "@ztrehagem/vue-accordion": "^0.3.0",
     "bootstrap": "^5.0.2",
+    "btoa-atob": "^0.1.2",
     "core-js": "^3.15.1",
+    "flickity": "^2.2.2",
     "jquery": "^3.6.0",
     "nuxt": "^2.15.7",
     "popper.js": "^1.16.1",
     "swiper": "^6.8.0",
+    "vue-badger-accordion": "^2.0.2",
+    "vue-faq-accordion": "^1.6.2",
+    "vue-flickity": "^1.2.1",
     "vue-window-size": "^0.6.2"
   },
   "devDependencies": {}
