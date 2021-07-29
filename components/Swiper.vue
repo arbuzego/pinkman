@@ -7,16 +7,16 @@
         :key="slide.largeImg"
       >
         <img
-          v-if="windowWidth < 767"
+          v-show="largeImg"
+          :src="require(`@/static/images/${slide.largeImg}`)"
+          alt="..."
+        />
+        <img
+          v-show="!largeImg"
           :src="require(`@/static/images/${slide.smallImg}`)"
           alt="..."
         />
 
-        <img
-          v-else
-          :src="require(`@/static/images/${slide.largeImg}`)"
-          alt="..."
-        />
         <div class="carousel_body">
           <h5 class="carousel_title">{{ slide.title }}</h5>
           <p class="carousel_text" v-html="slide.body"></p>
@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      windowWidth: 1000, //если не задать то ломается карусель, нужно получить значение до отрисовки карусели
+      largeImg: true, //если не задать то ломается карусель, нужно получить значение до отрисовки карусели
       flickityOptions: {
         initialIndex: 0,
         prevNextButtons: false,
@@ -59,12 +59,18 @@ export default {
       this.$refs.flickity.previous();
     },
     updateWindowWidth() {
-      this.windowWidth = window.screen.width;
-      console.log(this.windowWidth);
+      this.largeImg = window.screen.width > 767 ? true : false;
+      console.log(this.largeImg);
     }
   },
   props: {
     carouselData: Array
+  },
+  beforeCreate() {
+    if (process.browser) {
+      this.largeImg = window.screen.width > 767 ? true : false;
+      console.log(this.largeImg);
+    }
   },
   created() {
     if (process.browser) {

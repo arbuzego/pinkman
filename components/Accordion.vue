@@ -11,9 +11,7 @@
         ref="myText"
         :style="[showText ? { height: computedHeight, marginTop: '12px' } : {}]"
       >
-        <p>
-          {{ accordionData.text }}
-        </p>
+        {{ accordionData.text }}
       </div>
     </div>
   </div>
@@ -107,6 +105,7 @@ export default {
   line-height: 125%;
   letter-spacing: -0.04em;
   color: #7a838d;
+  max-height: 60px;
 }
 
 @media (max-width: 767px) {
@@ -129,10 +128,10 @@ export default {
 
   .accordion_text {
     font-weight: 400;
-    padding: 16px 24px 24px 24px;
     font-size: 17px;
     line-height: 23px;
     letter-spacing: -0.02em;
+    max-height: 90px;
   }
 }
 </style>
